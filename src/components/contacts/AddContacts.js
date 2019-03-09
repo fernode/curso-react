@@ -9,7 +9,8 @@ class AddContacts extends Component {
 		id: uuid(),
 		name: '',
 		email: '',
-		phone: ''
+		phone: '',
+		errors: {}
 	};
 
 	onChange = (e) => {
@@ -20,6 +21,21 @@ class AddContacts extends Component {
 		e.preventDefault();
 
 		const { id, name, email, phone } = this.state;
+
+		if (name === '') {
+			this.setState({ errors: { name: 'Name is required' } });
+			return;
+		}
+
+		if (email === '') {
+			this.setState({ errors: { email: 'Email is required' } });
+			return;
+		}
+
+		if (phone === '') {
+			this.setState({ errors: { phone: 'Phone is required' } });
+			return;
+		}
 
 		const newContact = {
 			id,
@@ -33,12 +49,13 @@ class AddContacts extends Component {
 		this.setState({
 			name: '',
 			email: '',
-			phone: ''
+			phone: '',
+			errors: {}
 		});
 	};
 
 	render() {
-		const { name, email, phone } = this.state;
+		const { name, email, phone, errors } = this.state;
 
 		return (
 			<Consumer>
@@ -57,6 +74,7 @@ class AddContacts extends Component {
 										placeholder="Name..."
 										value={name}
 										onChange={this.onChange}
+										error={errors.name}
 									/>
 									<TextInputGroup
 										type="text"
@@ -65,6 +83,7 @@ class AddContacts extends Component {
 										placeholder="Email"
 										value={email}
 										onChange={this.onChange}
+										error={errors.email}
 									/>
 									<TextInputGroup
 										type="text"
@@ -73,6 +92,7 @@ class AddContacts extends Component {
 										placeholder="Phone"
 										value={phone}
 										onChange={this.onChange}
+										error={errors.phone}
 									/>
 									<input type="submit" value="Add contact" className="btn btn-light btn-block" />
 								</form>
