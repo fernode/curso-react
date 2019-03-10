@@ -23,8 +23,7 @@ class Contact extends Component {
 					return (
 						<div className="card card-body">
 							<h4>
-								{' '}
-								{name} {' '}
+								{name}
 								<i
 									onClick={() => {
 										this.setState({
@@ -39,14 +38,13 @@ class Contact extends Component {
 									style={{ cursor: 'pointer', color: 'red', float: 'right' }}
 									onClick={this.onDeleteClick.bind(this, id, dispatch)}
 								/>
-							</h4>{' '}
-							{' '}
+							</h4>
 							{showContactInfo ? (
 								<ul className="list-group mb-3">
-									<li className="list-group-item"> Email: {email} </li> {' '}
-									<li className="list-group-item"> Phone: {phone} </li> {' '}
+									<li className="list-group-item"> Email: {email} </li>
+									<li className="list-group-item"> Phone: {phone} </li>
 								</ul>
-							) : null}{' '}
+							) : null}
 						</div>
 					);
 				}}
